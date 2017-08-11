@@ -1,0 +1,16 @@
+#koalaPic {
+    height: 40%;
+    width: 40%;
+    float: left;
+}
+
+#addKoala {
+    clear: both;
+}
+
+.companyInfo {
+    background-color: lightskyblue;
+    margin: 40px;
+    padding: 40px;
+    text-align: center;
+}
