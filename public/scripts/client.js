@@ -16,12 +16,15 @@ $(document).ready(function () {
     var ageIn = $('#ageIn').val();
     var readyForTransferIn = $('#readyForTransferIn').val();
     var notesIn = $('#notesIn').val();
+     //attempt to change readyForTransferIn into a boolean
+    //end attempt
     var objectToSend = {
       name: nameIn,
       gender: genderIn,
       age: ageIn,
       ready_for_transfer: readyForTransferIn,
       notes: notesIn
+
     };
     // call saveKoala with the new obejct
     saveKoala(objectToSend);
@@ -35,10 +38,22 @@ $(document).ready(function () {
       success: function(response) {
         getKoalas();
       }
-
     })
-
   })
+
+  $('#viewKoalas').on('click', '.readyButton', function () {
+    console.log('ready to ready koalas')
+    var koalaId = $(this).parent().data().id;
+    
+    $.ajax({
+      method: 'PUT',
+      url: '/koalas/' + koalaId,
+      success: function(response) {
+        getKoalas();
+      }
+    })
+  })
+  
 }); // end doc ready
 
 
@@ -83,6 +98,9 @@ function displayKoalas(koalasArray) {
     $koalaTR.append('<td class="ready_for_transfer">' + koala.ready_for_transfer + '</td>');
     $koalaTR.append('<td class="notes">' + koala.notes + '</td>');
     $koalaTR.append(' <button class="deleteButton">Delete Koala</button>')
+    if (koala.ready_for_transfer === false) {
+      $koalaTR.append(' <button class="readyButton">Ready for Transfer</button>');
+    };
     //$koalaTR.append('<td class="name">' + koala.name + '</td>');
     $('#viewKoalas').prepend($koalaTR);
   }
