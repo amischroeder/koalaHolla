@@ -11,12 +11,17 @@ $( document ).ready( function(){
     // get user input and put in an object
     // NOT WORKING YET :(
     // using a test object
+    var nameIn = $('#nameIn').val();
+    var genderIn = $('#genderIn').val();
+    var ageIn = $('#ageIn').val();
+    var readyForTransferIn = $('#readyForTransferIn').val();
+    var notesIn = $('#notesIn').val();
     var objectToSend = {
-      name: 'testName',
-      age: 'testName',
-      gender: 'testName',
-      readyForTransfer: 'testName',
-      notes: 'testName',
+      name: nameIn,
+      gender: genderIn,
+      age: ageIn,
+      ready_for_transfer: readyForTransferIn,
+      notes: notesIn
     };
     // call saveKoala with the new obejct
     saveKoala( objectToSend );
@@ -46,6 +51,7 @@ function saveKoala( newKoala ){
     data: newKoala,
     success: function( data ){
       console.log( 'got some koalas: ', data );
+      getKoalas(data);
     } // end success
   }); //end ajax
 }
