@@ -31,6 +31,7 @@ function getKoalas(){
     type: 'GET',
     success: function( data ){
       console.log( 'got some koalas: ', data );
+      displayKoalas(data);
     } // end success
   }); //end ajax
   // display on DOM with buttons that allow edit of each
@@ -54,5 +55,14 @@ function displayKoalas(koalasArray){
 
   for(var i=0; i <koalasArray.length; i++){
     var koala = koalasArray[i];
+    var $koalaTR= $('<tr></tr>');
+    $koalaTR.data('id', koala.id);
+    $koalaTR.append('<td class="name">' + koala.name + '</td>');
+    $koalaTR.append('<td class="gender">' + koala.gender + '</td>');
+    $koalaTR.append('<td class="age">' + koala.age + '</td>');
+    $koalaTR.append('<td class="ready_for_transfer">' + koala.ready_for_transfer + '</td>');
+    $koalaTR.append('<td class="notes">' + koala.notes + '</td>');
+    //$koalaTR.append('<td class="name">' + koala.name + '</td>');
+    $('#viewKoalas').prepend($koalaTR);
   }
 }
