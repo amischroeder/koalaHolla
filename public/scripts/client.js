@@ -48,3 +48,11 @@ function saveKoala( newKoala ){
     } // end success
   }); //end ajax
 }
+
+function displayKoalas(koalasArray){
+  $('#viewKoalas').empty();
+
+  for(var i=0; i <koalasArray.length; i++){
+    var koala = koalasArray[i];
+  }
+}
